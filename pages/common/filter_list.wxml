@@ -1,0 +1,18 @@
+ <template name="filter_list">
+ <scroll-view class="filterList" scroll-y="true">
+    <view class="filterList-characteristic-title">商家特色</view>
+    <view class="filterList-characteristic-items">
+      <block wx:for="{{characteristicList}}" wx:key="">
+        <view class="filterList-characteristic-item {{characteristicSelected[index]==true?'characteristic-selected':''}}" catchtap="characteristicSelected" data-index="{{index}}">{{item.text}}</view>
+      </block>
+    </view>
+    <view class="filterList-discount-title">优惠活动(单选)</view>
+    <view class="filterList-discount-items">
+      <block wx:for="{{discountList}}" wx:key="">
+        <view class="filterList-discount-item {{discountSelected==index?'discount-selected':''}}" catchtap="discountSelected" data-index="{{index}}">
+          <text class="filterList-discount-item-icon" style="background:{{item.iconColor}}">{{item.icon}}</text> {{item.text}}
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  </template>

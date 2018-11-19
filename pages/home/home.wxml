@@ -1,5 +1,6 @@
 <import src="../common/sort_list.wxml" />
-<view class="mask" hidden="{{mask1Hidden}}" bindtap="mask1Cancel">
+<import src="../common/filter_list.wxml" />
+ <view class="mask" hidden="{{mask1Hidden}}" bindtap="mask1Cancel">
   <template is="sort_list" data="{{selected,sortSelected}}" />
   <view class="overall-sort-list">
     <block wx:for="{{sortList}}" wx:key="">
@@ -9,7 +10,9 @@
 </view>
 <view class="mask" hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
   <template is="sort_list" data="{{selected,sortSelected}}" />
-  <scroll-view class="filterList" scroll-y="true">
+    <template is="filter_list" data="{{characteristicList,discountList}}" />
+
+  <!-- <scroll-view class="filterList" scroll-y="true">
     <view class="filterList-characteristic-title">商家特色</view>
     <view class="filterList-characteristic-items">
       <block wx:for="{{characteristicList}}" wx:key="">
@@ -24,7 +27,7 @@
         </view>
       </block>
     </view>
-  </scroll-view>
+  </scroll-view> -->
   <view class="filterList-footer">
     <view class="filterList-footer-delect" catchtap="clearSelectedNumb">清除筛选</view>
     <view class="filterList-footer-finish" bindtap="finish">完成
@@ -32,37 +35,40 @@
       </view>
     </view>
   </view>
-</view>
-<view class="heard">
-    <navigator url="/pages/location/location">
-      <view class="heard-location">
-        <image src="/pages/images/location.png" class="heard-location-icon" />
-        <text class="heard-location-text">{{location}}</text>
-      </view>
-    </navigator>
-    <view class="heard-search">
-      <image src="/pages/images/search.png" class="heard-search-icon" /> shou
+</view> 
+<view class="heard"  hidden="{{filterHidden}}">
+  <navigator url="/pages/location/location">
+    <view class="heard-location">
+      <image src="/pages/images/location.png" class="heard-location-icon" />
+      <text class="heard-location-text">{{location}}</text>
     </view>
+  </navigator>
+  <view class="heard-search">
+    <image src="/pages/images/search.png" class="heard-search-icon" /> shou
   </view>
+</view>
 <scroll-view bindscrolltolower="lower" class="scroll-restaurants-list" scroll-y="true" scroll-into-view="{{scrollIntoView}}" style="height:100%">
-  
+<view class="restaurantsList"  hidden="{{filterHidden}}">
   <swiper class="categoryList" indicator-dots="false" indicator-color="rgba(228,228,228,1)" indicator-active-color="#FFFFFF">
     <block wx:for="{{categoryList}}" wx:key="">
       <swiper-item>
         <block wx:for="{{item}}" wx:key="">
-          <view class="category-info" bindtap="toNearby">
-            <image src="{{item.img}}" class="category-image"></image>
-            <view class="category-text">{{item.name}}</view>
+          <view class="category-info">
+            <navigator url="/pages/shops/shops">
+              <image src="{{item.img}}" class="category-image"></image>
+              <view class="category-text">{{item.name}}</view>
+            </navigator>
           </view>
         </block>
       </swiper-item>
     </block>
   </swiper>
   <view id="nearby" class="header-title">附近商家</view>
+  </view>
   <template is="sort_list" data="{{selected,sortSelected}}" />
   <view class="restaurantsList">
     <block wx:for="{{restaurant}}" wx:key="">
-      <navigator url="/pages/menu/menu">
+      <navigator url="/pages/home/home?filterHidden=true">
         <view class="restaurants-list">
           <view class="restaurants-info-image">
             <image src="{{item.src}}" class="restaurants-image" />
@@ -91,4 +97,3 @@
   </view>
 
 </scroll-view>
-

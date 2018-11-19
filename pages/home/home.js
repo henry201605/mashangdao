@@ -67,7 +67,7 @@ Page({
           id: 1,
           img: '/pages/images/index/icon_1.jpg',
           name: '美食',
-          url: '/pages/menu/menu'
+          url: ''
         },
         {
           id: 2,
@@ -121,7 +121,8 @@ Page({
     discountSelected:null,
     selectedNumb: 0,
     sortSelected: "综合排序"
-  },
+    // filterHidden: false,
+    },
   finish: function () {
     var that = this;
     wx.request({
@@ -140,6 +141,9 @@ Page({
       url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/overAll",
       method: "GET",
       success: function (res) {
+        console.log("sortSelected---->restaurant--->" + res.data.data.restaurant);
+        console.log("sortSelected---->sortSelected--->" + that.data.sortList[e.currentTarget.dataset.index].sort);
+
         that.setData({
           restaurant: res.data.data.restaurant,
           sortSelected: that.data.sortList[e.currentTarget.dataset.index].sort
@@ -241,6 +245,9 @@ Page({
 			scrollIntoView: null
 		});
 	},
+  coinclick:function(){
+    console.log("coinclick----->")
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -5,11 +5,12 @@
     "pages/location/location",
     "pages/my/my",
     "pages/order/order",
-    "page/index/search"
+    "pages/shops/shops",
+    "pages/search/search"
    
   ],
   "window":{
-    "navigationBarTitleText": "马上到",
+    "navigationBarTitleText": "***",
     "navigationBarTextStyle": "white",
     "navigationBarBackgroundColor": "#FFC640"
   },
@@ -23,10 +24,9 @@
         "pagePath": "pages/home/home",
         "iconPath": "pages/images/home.png",
         "selectedIconPath": "pages/images/home-selected.png",
-        "color":"white",
         "text": "首页"
       },
-      {
+        {
         "pagePath": "pages/order/order",
         "iconPath": "pages/images/order.png",
         "selectedIconPath": "pages/images/order-selected.png",
