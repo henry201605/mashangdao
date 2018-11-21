@@ -63,53 +63,102 @@ Page({
     }],
     categoryList: [
       [{
-          id: 1,
-          img: '/pages/images/index/icon_1.jpg',
-          name: '美食',
-          url: ''
-        },
-        {
-          id: 2,
-          img: '/pages/images/index/icon_2.jpg',
-          name: '便利店',
-          url: ''
-        },
-        {
-          id: 3,
-          img: '/pages/images/index/icon_3.jpg',
-          name: '水果蔬菜',
-          url: ''
-        },
-        {
-          id: 4,
-          img: '/pages/images/index/icon_11.jpg',
-          name: '鲜花蛋糕',
-          url: ''
-        },
-        {
-          id: 5,
-          img: '/pages/images/index/icon_5.jpg',
-          name: '正餐优选',
-          url: ''
-        },
-        {
-          id: 6,
-          img: '/pages/images/index/icon_6.jpg',
-          name: '外卖专送',
-          url: ''
-        },
-        {
-          id: 7,
-          img: '/pages/images/index/icon_7.jpg',
-          name: '饮品站',
-          url: ''
-        },
-        {
-          id: 8,
-          img: '/pages/images/index/icon_8.jpg',
-          name: '小吃馆',
-          url: ''
-        }
+        id: 1,
+        img: '/pages/images/index/icon_1.jpg',
+        name: '美食',
+        url: ''
+      },
+      {
+        id: 2,
+        img: '/pages/images/index/icon_2.jpg',
+        name: '便利店',
+        url: ''
+      },
+      {
+        id: 3,
+        img: '/pages/images/index/icon_3.jpg',
+        name: '水果蔬菜',
+        url: ''
+      },
+      {
+        id: 4,
+        img: '/pages/images/index/icon_11.jpg',
+        name: '鲜花蛋糕',
+        url: ''
+      },
+      {
+        id: 5,
+        img: '/pages/images/index/icon_5.jpg',
+        name: '正餐优选',
+        url: ''
+      },
+      {
+        id: 6,
+        img: '/pages/images/index/icon_6.jpg',
+        name: '外卖专送',
+        url: ''
+      },
+      {
+        id: 7,
+        img: '/pages/images/index/icon_7.jpg',
+        name: '饮品站',
+        url: ''
+      },
+      {
+        id: 8,
+        img: '/pages/images/index/icon_8.jpg',
+        name: '小吃馆',
+        url: ''
+      }
+      ],
+      [{
+        id: 1,
+        img: '/pages/images/index/icon_1.jpg',
+        name: '美食',
+        url: ''
+      },
+      {
+        id: 2,
+        img: '/pages/images/index/icon_2.jpg',
+        name: '便利店',
+        url: ''
+      },
+      {
+        id: 3,
+        img: '/pages/images/index/icon_3.jpg',
+        name: '水果蔬菜',
+        url: ''
+      },
+      {
+        id: 4,
+        img: '/pages/images/index/icon_11.jpg',
+        name: '鲜花蛋糕',
+        url: ''
+      },
+      {
+        id: 5,
+        img: '/pages/images/index/icon_5.jpg',
+        name: '正餐优选',
+        url: ''
+      },
+      {
+        id: 6,
+        img: '/pages/images/index/icon_6.jpg',
+        name: '外卖专送',
+        url: ''
+      },
+      {
+        id: 7,
+        img: '/pages/images/index/icon_7.jpg',
+        name: '饮品站',
+        url: ''
+      },
+      {
+        id: 8,
+        img: '/pages/images/index/icon_8.jpg',
+        name: '小吃馆',
+        url: ''
+      }
       ]
     ],
     selected: 0,
@@ -123,24 +172,24 @@ Page({
     sortSelected: "综合排序"
 
   },
-  finish: function() {
+  finish: function () {
     var that = this;
     wx.request({
       url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/filter",
       method: "GET",
-      success: function(res) {
+      success: function (res) {
         that.setData({
           restaurant: res.data.data.restaurant,
         })
       }
     });
   },
-  sortSelected: function(e) {
+  sortSelected: function (e) {
     var that = this;
     wx.request({
       url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/overAll",
       method: "GET",
-      success: function(res) {
+      success: function (res) {
         console.log("sortSelected---->restaurant--->" + res.data.data.restaurant);
         console.log("sortSelected---->sortSelected--->" + that.data.sortList[e.currentTarget.dataset.index].sort);
 
@@ -151,14 +200,14 @@ Page({
       }
     });
   },
-  clearSelectedNumb: function() {
+  clearSelectedNumb: function () {
     this.setData({
       characteristicSelected: [false],
       discountSelected: null,
       selectedNumb: 0
     })
   },
-  characteristicSelected: function(e) {
+  characteristicSelected: function (e) {
     var info = this.data.characteristicSelected;
     info[e.currentTarget.dataset.index] = !info[e.currentTarget.dataset.index];
     this.setData({
@@ -167,7 +216,7 @@ Page({
     })
     console.log(e.currentTarget.dataset.index);
   },
-  discountSelected: function(e) {
+  discountSelected: function (e) {
     if (this.data.discountSelected != e.currentTarget.dataset.index) {
       this.setData({
         discountSelected: e.currentTarget.dataset.index,
@@ -180,27 +229,27 @@ Page({
       })
     }
   },
-  onTapTag: function(e) {
+  onTapTag: function (e) {
     this.setData({
       selected: e.currentTarget.dataset.index
     });
   },
-  mask1Cancel: function() {
+  mask1Cancel: function () {
     this.setData({
       mask1Hidden: true
     })
   },
-  mask2Cancel: function() {
+  mask2Cancel: function () {
     this.setData({
       mask2Hidden: true
     })
   },
-  onOverallTag: function() {
+  onOverallTag: function () {
     this.setData({
       mask1Hidden: false
     })
   },
-  onFilter: function() {
+  onFilter: function () {
     this.setData({
       mask2Hidden: false
     })
@@ -208,28 +257,28 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-   
-     },
+  onLoad: function (options) {
+
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     console.log("onShow-------------->")
 
     var that = this;
     wx.request({
       url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/info",
       method: "GET",
-      success: function(res) {
+      success: function (res) {
         that.setData({
           restaurant: res.data.data.restaurant,
           location: wx.getStorageSync('location')
@@ -237,7 +286,7 @@ Page({
       }
     });
   },
-  toNearby: function() {
+  toNearby: function () {
     console.log("toNearby-------------->")
     var self = this;
     self.setData({
@@ -247,41 +296,41 @@ Page({
       scrollIntoView: null
     });
   },
-  coinclick: function() {
+  coinclick: function () {
     console.log("coinclick----->")
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

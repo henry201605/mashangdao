@@ -15,4 +15,11 @@
       </block>
     </view>
   </scroll-view>
+    <view class="filterList-footer">
+    <view class="filterList-footer-delect" catchtap="clearSelectedNumb">清除筛选</view>
+    <view class="filterList-footer-finish" bindtap="finish">完成
+      <view class="filterList-footer-finish-number" hidden="{{selectedNumb==0}}">{{selectedNumb}}
+      </view>
+    </view>
+  </view>
   </template>
