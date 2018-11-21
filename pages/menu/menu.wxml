@@ -1,13 +1,21 @@
-<import src = "../common/orderPage.wxml"/>
-<import src = "../common/commentPage.wxml"/>
+<import src="../common/orderPage.wxml" />
+<import src="../common/commentPage.wxml" />
+
 <view class="container" disable-scroll="true">
   <view class="header">
-    <block wx:for="{{swiperTitle}}" wx:key="">
-      <view class="title {{index==currentPage?'selected':''}}" data-index="{{index}}"
-      bindtap="turnPage">{{item.text}}</view>
-    </block> 
+    <image class="logo" src="{{shopinfo.logo}}" />
+    <view class="name ellipsis">{{shopinfo.name}}</view>
+    <view class="welcome ellipsis">公告：欢迎光临{{shopinfo.name}}！</view>
+    <view class="follow" bindtap="follow">{{followed?'已收藏':'收藏'}}</view>
+    <view class="line"></view>
+    <view class="desc">{{shopinfo.desc}}</view>
   </view>
-  <swiper class="swiper" current="{{currentPage}} 
+  <view class="headertab">
+    <block wx:for="{{swiperTitle}}" wx:key="">
+      <view class="title {{index==currentPage?'selected':''}}" data-index="{{index}}" bindtap="turnPage">{{item.text}}</view>
+    </block>
+  </view>
+   <swiper class="swiper" current="{{currentPage}} 
   bindchange="turnTitle">
     <swiper-item id="orderPage">
       <template is="orderPage" data="{{menu,selected,howMuch,cost,pullBar}}"/>

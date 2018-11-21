@@ -16,6 +16,7 @@ Page({
       id: 3
     }],
     menu:[],
+    shopinfo:{},
     currentPage: 0,
     selected: 0,
     howMuch: 12,
@@ -70,11 +71,12 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/menu",
+      url: "https://www.easy-mock.com/mock/5bee36406142a550e9bdd954/wmpro/restaurant/menu",
       method: "GET",
       success: function (res) {
         that.setData({
-          menu: res.data,
+          shopinfo: res.data,
+          menu: res.data.data,
         })
       }
     });

@@ -8,3 +8,8 @@ page{
   left: 0;
   bottom: 0;
 }
+.ellipsis {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
