@@ -15,13 +15,19 @@ Page({
       text: "商家",
       id: 3
     }],
+    cart: {
+      count: 0,
+      total: 0,
+      list: {}
+    },
     menu:[],
     shopinfo:{},
     currentPage: 0,
     selected: 0,
     howMuch: 12,
     cost:0,
-    pullBar: false
+    pullBar: false,
+    isShowCartDetail: false
   },
   pullBar: function () {
     this.setData({
@@ -81,7 +87,67 @@ Page({
       }
     });
   },
+/**
+ * 购物车信息
+ */
+  showCartDetail: function () {
+    
+    console.log("isShowCartDetail------->" + this.data.isShowCartDetail);
+    console.log("cart.count------->" + this.data.cart.count);
 
+    this.setData({
+      isShowCartDetail: !this.data.isShowCartDetail
+    });
+  },
+  hideCartDetail: function () {
+    this.setData({
+      isShowCartDetail: false
+    });
+  },
+  tapAddCart: function (e) {
+    this.addCart(e.target.dataset.id);
+  },
+  tapReduceCart: function (e) {
+    this.reduceCart(e.target.dataset.id);
+  },
+  addCart: function (id) {
+    var num = this.data.cart.list[id] || 0;
+    this.data.cart.list[id] = num + 1;
+    this.countCart(id);
+  },
+  reduceCart: function (id) {
+    var num = this.data.cart.list[id] || 0;
+    if (num <= 1) {
+      delete this.data.cart.list[id];
+    } else {
+      this.data.cart.list[id] = num - 1;
+    }
+    this.countCart(id);
+  },
+  countCart: function (id) {
+    var count = 0,
+      total = 0;
+    var info = this.data.menu;
+    info[this.data.selected].menuContent[id].numb++;
+     for (var id in this.data.cart.list) {
+      // var goods = this.data.goods[id];
+       var goods = info[this.data.selected].menuContent[id]
+      count += this.data.cart.list[id];
+      total += goods.price * this.data.cart.list[id];
+    }
+    this.data.cart.count = count;
+    this.data.cart.total = total;
+    this.setData({
+      cart: this.data.cart,
+      menu: info
+    });
+    console.log("cart---------------" + cart)
+  },
+  follow: function () {
+    this.setData({
+      followed: !this.data.followed
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

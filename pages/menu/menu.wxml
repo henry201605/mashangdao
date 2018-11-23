@@ -6,7 +6,7 @@
     <image class="logo" src="{{shopinfo.logo}}" />
     <view class="name ellipsis">{{shopinfo.name}}</view>
     <view class="welcome ellipsis">公告：欢迎光临{{shopinfo.name}}！</view>
-    <view class="follow" bindtap="follow">{{followed?'已收藏':'收藏'}}</view>
+    <!-- <view class="follow" bindtap="follow">{{followed?'已收藏':'收藏'}}</view> -->
     <view class="line"></view>
     <view class="desc">{{shopinfo.desc}}</view>
   </view>
@@ -19,6 +19,31 @@
   bindchange="turnTitle">
     <swiper-item id="orderPage">
       <template is="orderPage" data="{{menu,selected,howMuch,cost,pullBar}}"/>
+
+       <view class="cart-detail" hidden="{{!isShowCartDetail||!cart.count}}">
+         <view class="mask" bindtap="hideCartDetail"></view>
+          <view class="list">
+              <view class="item" wx:for="{{cart.list}}" wx:for-index="id" wx:for-item="num" wx:key="id">
+                <view class="name ellipsis">{{menu[num].menuContent[0]}}</view>
+                <view class="total">￥{{goods[id].price*cart.list[id]}}</view>
+                <view class="reduce" data-id="{{id}}" bindtap="tapReduceCart">-</view>
+                <view class="num">{{num}}</view>
+                <view class="add" data-id="{{id}}" bindtap="tapAddCart">+</view>
+              </view>
+          </view>
+        </view>
+  
+  <view class="footer {{cart.total!=0?'active':''}}">
+       <view class="howMuch" bindtap="showCartDetail">
+      <view class="img" style="background:{{total!=0?'#FFD161':'#E7E7E7'}};">
+        <image src="/pages/images/trolley.png" style="width:60rpx;height:60rpx;"></image>
+         <view class="count">{{cart.count}}</view>
+      </view>
+      <view class="cost" hidden="{{cart.total==0}}">￥{{cart.total}}</view>
+      <view class="free">免配送费</view>
+    </view>
+    <view class="pay">{{total!=0?'去结算':'15元起送'}}</view>
+  </view>
     </swiper-item>
     <swiper-item id="commentPage">
       <template is="commentPage" data="{{categoryList}}"/>
