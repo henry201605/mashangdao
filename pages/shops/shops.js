@@ -5,6 +5,77 @@ Page({
    * 页面的初始数据
    */
   data: {
+    restaurant: [{
+      "name": "正新鸡排",
+      "star": 5,
+      "sales": 1161,
+      "src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543003653958&di=d9e9bd607d5d799c26e5db78a53b1e1a&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fbainuo%2Fcrop%3D0%2C0%2C470%2C285%3Bw%3D470%3Bq%3D80%2Fsign%3Dd878568ed858ccbf0ff3ef7a24e8900e%2F472309f79052982219a8c6ffdeca7bcb0a46d477.jpg",
+      "initial_price": 20,
+      "distribution_price": 0,
+      "distance": "1.5km",
+      "time": 30
+    },
+    {
+      "name": "海底捞",
+      "star": 4,
+      "sales": 330,
+      "src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543003709598&di=4cd6b0e9da716864136189520e65fb7c&imgtype=0&src=http%3A%2F%2Fci.xiaohongshu.com%2F14a5ca67-ea7d-4634-9876-e43b97f2afed%40r_640w_640h.jpg",
+      "initial_price": 50,
+      "distribution_price": 3,
+      "distance": "3.3km",
+      "time": 56
+    },
+    {
+      "name": "味多美",
+      "src": "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2289035708,1932783504&fm=26&gp=0.jpg",
+      "star": 0,
+      "sales": 39,
+      "initial_price": 35,
+      "distribution_price": 3,
+      "distance": "3.1km",
+      "time": 44
+    },
+    {
+      "name": "绝味鸭脖",
+      "star": 0,
+      "sales": 24,
+      "src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543003803926&di=b9fd7412993012275f4d65791f34a0c9&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F031faee569075fb000001ce9802b901.jpg",
+      "initial_price": 30,
+      "distribution_price": 1,
+      "distance": "2.6km",
+      "time": 44
+    },
+    {
+      "name": "御膳房",
+      "src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543003841211&di=455c731427598c31feae92e4306273f0&imgtype=0&src=http%3A%2F%2Fp6.sinaimg.cn%2F1802224253%2F180%2F58151282723421",
+      "star": 4.5,
+      "sales": 641,
+      "initial_price": 0,
+      "distribution_price": 0,
+      "distance": "156m",
+      "time": 33
+    },
+    {
+      "name": "小肥羊",
+      "star": 4.5,
+      "sales": 731,
+      "src": "http://fumenhu-10002785.file.myqcloud.com/Upload/imgs/20150128/file_54c892c3e0551.jpg",
+      "initial_price": 15,
+      "distribution_price": 0,
+      "distance": "1.3km",
+      "time": 52
+    },
+    {
+      "name": "星巴克",
+      "star": 4.5,
+      "sales": 37,
+      "src": "http://pic33.photophoto.cn/20141019/0017029495939520_b.jpg",
+      "initial_price": 58,
+      "distribution_price": 0,
+      "distance": "6.8km",
+      "time": 49
+    }
+    ],
     characteristicList: [{
       text: "免配送费"
     }, {
@@ -272,19 +343,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("onShow-------------->")
-
-    var that = this;
-    wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/info",
-      method: "GET",
-      success: function (res) {
-        that.setData({
-          restaurant: res.data.data.restaurant,
-          location: wx.getStorageSync('location')
-        })
-      }
-    });
+    console.log("onShow-------------->" + restaurant)
+    that.setData({
+      restaurant: this.restaurant,
+      location: wx.getStorageSync('location')
+    })
+    // var that = this;
+    // wx.request({
+    //   url: "https://www.easy-mock.com/mock/5bee36406142a550e9bdd954/wmpro/restaurant",
+    //   method: "GET",
+    //   success: function(res) {
+    //     that.setData({
+    //        restaurant: res.data.data.restaurant,
+    //       location: wx.getStorageSync('location')
+    //     })
+    //   }
+    // });
   },
   toNearby: function () {
     console.log("toNearby-------------->")

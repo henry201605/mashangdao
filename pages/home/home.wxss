@@ -276,3 +276,10 @@
   z-index:999;
   background-color:rgba(15, 15, 26, 0.7);
 }
+
+/*隐藏滚动条*/
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
