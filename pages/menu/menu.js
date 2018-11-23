@@ -16,16 +16,18 @@ Page({
       id: 3
     }],
     cart: {
-      count: 0,
-      total: 0,
+      count: 0, //购物车数量
+      total: 0,//总价格
       list: {}
     },
     menu:[],
+    goods:{},
+    // goodsObject:{},
     shopinfo:{},
     currentPage: 0,
     selected: 0,
     howMuch: 12,
-    cost:0,
+    total:0,
     pullBar: false,
     isShowCartDetail: false
   },
@@ -33,25 +35,68 @@ Page({
     this.setData({
       pullBar: !this.data.pullBar
     })
-  }
-  ,
-  addToTrolley: function (e) {
-    var info = this.data.menu;
-    info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb++;
+  },
+   addToTrolley: function (e) {
+     let foodid, singlemenu;
+     //判断是购物车的加号还是菜单页面
+     if (typeof (e.currentTarget.dataset.index) != "undefined") { //说明是菜单
+      //菜单
+      var info = this.data.menu;
+      singlemenu = info[this.data.selected].menuContent[e.currentTarget.dataset.index];
+      singlemenu.numb++; //数量增加
+      foodid = singlemenu.id;
+     } else if (typeof (e.currentTarget.dataset.id) != "undefined"){
+       foodid = e.currentTarget.dataset.id;
+       singlemenu = this.data.cart.list[foodid].food;
+    }
+    //购物车列表
+     //购物车里的菜
+      //说明该类菜单还没有加入到列表中
+     if (typeof (this.data.cart.list[foodid]) == "undefined") {
+       this.data.cart.list[foodid] = {
+         food: singlemenu,
+         foodnum : 1
+       }
+       }else{
+       this.data.cart.list[foodid].foodnum ++ ;
+       }
+    this.data.cart.count++; 
+    this.data.cart.total = this.data.cart.total + singlemenu.price;
+     console.log("this.data.cart.total-------------" + this.data.cart.total)
+     console.log("this.data.cart.count-------------" + this.data.cart.count)
+
     this.setData({
-      cost: this.data.cost+this.data.menu[this.data.selected].menuContent[e.currentTarget.dataset.index].price,
-      menu: info,
+      cart: this.data.cart,
+      menu: info
     })
   },
   removeFromTrolley: function (e) {
+    let foodid, singlemenu;
+    if (typeof (e.currentTarget.dataset.index) != "undefined") { //说明是菜单
+    //菜单
     var info = this.data.menu;
-    if (info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb!=0){
-      info[this.data.selected].menuContent[e.currentTarget.dataset.index].numb--;
+      singlemenu = info[this.data.selected].menuContent[e.currentTarget.dataset.index];
+      singlemenu.numb--;//数量减1
+      foodid = singlemenu.id;
+    } else if(typeof (e.currentTarget.dataset.id) != "undefined"){    
+      foodid = e.currentTarget.dataset.id;
+      singlemenu = this.data.cart.list[foodid].food;
+    }
+      let num = this.data.cart.list[foodid].foodnum || 0;
+      if (num <= 1) {
+        delete this.data.cart.list[foodid];
+      } else {
+        this.data.cart.list[foodid].foodnum = num - 1;
+      }
+      //购物车列表
+      this.data.cart.count--;
+      this.data.cart.total = this.data.cart.total - singlemenu.price;
+      console.log("this.data.cart.total-------------" + this.data.cart.total)
+      console.log("this.data.cart.count-------------" + this.data.cart.count)
       this.setData({
-        cost: this.data.cost - this.data.menu[this.data.selected].menuContent[e.currentTarget.dataset.index].price,
+        cart: this.data.cart,
         menu: info,
       })
-    }
   },
   turnPage: function (e) {
     this.setData({
@@ -69,7 +114,7 @@ Page({
     this.setData({
       selected: e.currentTarget.dataset.index
     })
-    console.log(e.currentTarget.dataset.index);
+    console.log("turnMenu----selected-----"+e.currentTarget.dataset.index);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -77,7 +122,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: "https://www.easy-mock.com/mock/5bee36406142a550e9bdd954/wmpro/restaurant/menu",
+      url: "https://www.easy-mock.com/mock/5bee36406142a550e9bdd954/wmpro/menuList",
       method: "GET",
       success: function (res) {
         that.setData({
