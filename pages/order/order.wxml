@@ -9,13 +9,14 @@ scroll-y="true">
       </view>
       <view class="order-content">
         <image class="order-content-restaurantImg"
-         src="http://i4.piimg.com/601998/9ce47f2f19d7717d.jpg"></image>
+         src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543003161746&di=154e70f4f4a78c70af41b693a797f433&imgtype=0&src=http%3A%2F%2Fuserimages15.51sole.com%2F20170901%2Fb_4046932_201709011637431308.jpg"></image>
         <view class="order-content-info">
+        <view class="order-content-info-name">{{item.name}}</view>
           <view class="order-content-info-price">￥ {{item.price}}</view>
           <view class="order-content-info-date">
           {{item.date}} {{item.time}}</view>
-          <view class="order-content-info-howToDistribute">
-          由 {{item.howToDistribute}} 提供服务</view>
+          <!-- <view class="order-content-info-howToDistribute">
+          由 {{item.howToDistribute}} 提供服务</view> -->
         </view>
       </view>
       <view class="order-footer">

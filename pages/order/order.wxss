@@ -44,9 +44,15 @@
   display: flex;
   flex-direction: column;
 }
+.order-content-info-name{
+  font-size: 35rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  margin-left: 30rpx;
+}
 .order-content-info-price,.order-content-info-date,
 .order-content-info-howToDistribute{
-  height: 42rpx;
+  height: 62rpx;
   line-height: 42rpx;
   margin-left: 30rpx;
 }

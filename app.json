@@ -6,12 +6,13 @@
     "pages/my/my",
     "pages/order/order",
     "pages/shops/shops",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/user/user"
    
   ],
   "window":{
-    "navigationBarTitleText": "马上就到",
-    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "天天送",
+    "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#FFC640"
   },
   "tabBar": {
@@ -33,7 +34,7 @@
         "text": "订单"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/user/user",
         "iconPath": "pages/images/tabBar/mine_2.png",
         "selectedIconPath": "pages/images/tabBar/mine_1.png",
         "text": "我的"

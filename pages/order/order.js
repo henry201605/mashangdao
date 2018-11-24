@@ -6,12 +6,13 @@ Page({
    */
   data: {
     orderList:[{
-      restaurantName: "传世排骨汤饭",
+      restaurantName: "肯德基",
+      name: "鸡腿堡",
       state: "订单取消",
       price: "12",
       date: "2017-07-14",
       time: "12:29:12",
-      howToDistribute: "商家"
+      howToDistribute: "KFC肯德基"
     }]
   },
 

@@ -1,4 +1,4 @@
-<import src="../common/orderPage.wxml" />
+<!-- <import src="../common/orderPage.wxml" /> -->
 <import src="../common/commentPage.wxml" />
 
 <view class="container" disable-scroll="true">
