@@ -280,23 +280,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    console.log("location-----onLoad--------->");
+
      },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    console.log("location-----onReady--------->");
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    console.log("onShow-------------->" + restaurant)
-    that.setData({
-      restaurant: this.restaurant,
+    console.log("location-----show--------->" + wx.getStorageSync('location'))
+    this.setData({
+      // restaurant: this.restaurant,
       location: wx.getStorageSync('location')
     })
     // var that = this;
