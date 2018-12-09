@@ -1,5 +1,6 @@
 <import src="../common/sort_list.wxml" />
 <import src="../common/filter_list.wxml" />
+
 <view class="mask" hidden="{{mask1Hidden}}" bindtap="mask1Cancel">
   <template is="sort_list" data="{{selected,sortSelected}}" />
   <view class="overall-sort-list">
@@ -39,6 +40,7 @@
         </block>
       </swiper-item>
     </block>
+
   </swiper>
   <view class="header-title">附近商家</view>
   <template is="sort_list" data="{{selected,sortSelected}}" />

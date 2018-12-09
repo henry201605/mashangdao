@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "avatar-component": "/components/avatar/avatar",
+    "van-button": "../../lib/miniprogram_npm/vant-weapp/button/index"
+  }
+}

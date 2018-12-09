@@ -283,3 +283,15 @@
   height: 0;
   color: transparent;
 }
+
+
+.button-img {
+  position: absolute;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+.weui-btn{
+  width: 80%;
+}

@@ -1,0 +1,20 @@
+<!--pages/userinfo/userinfo.wxml-->
+<view class='container'>
+  <van-button custom-class='avatar-tip' bindtap="avatarTip">更新头像</van-button>
+  <avatar-component class="userinfo-class" click-prop='{{clickDown}}' />
+  <navigator class='navigator' url='userform/userform'>
+   <image class="center_map" src="../images/dizhi.png" style="height:40rpx;"></image>
+    <view class="navigator-text">收货地址</view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+  <navigator class='navigator' url='workload/workload'>
+   <image class="center_map" src="../images/zxkf.png"></image>
+    <view class="navigator-text">联系客服</view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+  <navigator class='navigator' url='statistics/statistics'>
+ <image class="center_map" src="../images/bzzx.png" style="width:40rpx;height:40rpx;"></image>    <view class="navigator-text">帮助中心</view>
+    <view class='navigator-arrow'></view>
+  </navigator>
+  
+</view>
